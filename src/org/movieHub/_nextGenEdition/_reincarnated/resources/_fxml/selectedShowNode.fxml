@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="890.0" style="-fx-background-color: #323232;" stylesheets="@../_css/showStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.movieHub._nextGenEdition._reincarnated._controller._nodes.SelectedShowNode">
+    <children>
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="890.0">
+            <children>
+                <Label fx:id="showNameTF" layoutX="14.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="592.0" styleClass="labelText" textFill="WHITE" wrapText="true">
+                    <tooltip>
+                        <Tooltip styleClass="tooltipText" />
+                    </tooltip>
+                </Label>
+                <Label fx:id="typeLbl" alignment="CENTER" layoutX="656.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="37.0" styleClass="fileType" textFill="#00fa0c" wrapText="true">
+                </Label>
+                <Label fx:id="sizeTF" alignment="CENTER" layoutX="743.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="92.0" styleClass="fileSize" textFill="#fae800" wrapText="true">
+                    <tooltip>
+                        <Tooltip styleClass="tooltipText" text="Its a Movie =)" />
+                    </tooltip>
+                </Label>
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="846.0" layoutY="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#remove" prefHeight="47.0" prefWidth="44.0" ripplerFill="#653939" style="-fx-background-radius: 0px; -fx-background-color: #e42828;">
+                    <graphic>
+                        <MaterialDesignIconView fill="WHITE" glyphName="PLAYLIST_REMOVE" size="20" />
+                    </graphic>
+                    <tooltip>
+                        <Tooltip styleClass="tooltipText" text="Click to remove" />
+                    </tooltip>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </JFXButton>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

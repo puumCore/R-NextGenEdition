@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane prefHeight="95.0" prefWidth="480.0" style="-fx-background-color: linear-gradient(#FFB900, #F0D801); -fx-background-radius: 6px;" stylesheets="@../_css/activityStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.movieHub._nextGenEdition._reincarnated._controller._nodes.JobNode">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <HBox layoutX="15.0" layoutY="12.0" prefHeight="27.0" prefWidth="320.0" spacing="5.0">
+                    <children>
+                        <Label fx:id="tagNameLbl" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="27.0" prefWidth="354.0" styleClass="name" textFill="#323232" wrapText="true" />
+                        <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" graphicTextGap="10.0" minHeight="-Infinity" minWidth="-Infinity" onAction="#show_task_files" prefHeight="27.0" prefWidth="27.0" ripplerFill="WHITE" style="-fx-background-radius: 27px;" styleClass="activity_view_btn" text="View" textFill="WHITE">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                            <graphic>
+                                <MaterialDesignIconView glyphName="INFORMATION_OUTLINE" size="18" />
+                            </graphic>
+                        </JFXButton>
+                    </children>
+                </HBox>
+                <Label fx:id="sizeDifferenceLbl" layoutX="15.0" layoutY="49.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="225.0" styleClass="statusText" textFill="#323232" wrapText="true" />
+                <JFXProgressBar fx:id="taskStatusBar" layoutX="15.0" layoutY="79.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="3.0" prefWidth="450.0" progress="0.0" styleClass="progBar" stylesheets="@../_css/whiteProgressBar.css" />
+                  <JFXButton contentDisplay="GRAPHIC_ONLY" focusTraversable="false" layoutX="429.0" layoutY="30.5" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#cancel" prefHeight="34.0" prefWidth="34.0" ripplerFill="WHITE" style="-fx-background-radius: 34px;" styleClass="handCursor">
+                      <graphic>
+                          <FontAwesomeIconView glyphName="STOP_CIRCLE_ALT" size="20" />
+                      </graphic>
+                  </JFXButton>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

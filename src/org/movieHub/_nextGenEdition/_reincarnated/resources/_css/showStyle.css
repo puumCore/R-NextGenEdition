@@ -1,0 +1,26 @@
+.labelText {
+    -fx-font-family: 'Fira Sans Medium';
+    -fx-font-size: 14px;
+}
+
+.fileSize {
+    -fx-font-family: 'Montserrat Medium';
+    -fx-font-size: 15px;
+}
+
+.status {
+    -fx-font-family: 'Montserrat Medium';
+    -fx-font-size: 12px;
+}
+
+.tooltipText {
+    -fx-font-family:  'Fira Sans';
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+    /* -fx-text-fill: #24ACF2; */
+}
+
+.fileType {
+    -fx-font-family: 'Montserrat SemiBold';
+    -fx-font-size: 18px;
+}

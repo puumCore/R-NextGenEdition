@@ -1,0 +1,62 @@
+.activity_date {
+    -fx-font-family: 'Fira Sans Medium';
+    -fx-font-size: 16px;
+}
+
+.activity_name {
+    -fx-font-family: 'Fira Sans Medium';
+    -fx-font-size: 14px;
+}
+
+.activity_timeLine_title {
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 12px;
+}
+
+.activity_timeLine_info {
+    -fx-font-family: 'Fira Sans Medium';
+    -fx-font-size: 13px;
+}
+
+.activity_view_btn {
+    -fx-font-family: 'Fira Sans';
+    -fx-font-size: 13px;
+}
+
+.scroll-pane {
+    -fx-background-color: #323232;
+}
+
+.scroll-bar:horizontal,
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:horizontal.track,
+.scroll-bar:vertical.track {
+    -fx-background-color: transparent;
+    -fx-border-color: #4D4D4D;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-background-radius: 5em;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 14.5;
+    -fx-padding: 3;
+}
+
+.scroll-bar:horizontal {
+    -fx-pref-height: 14.5;
+    -fx-padding: 3;
+}
+
+.scroll-bar,
+.scroll-bar:pressed,
+.scroll-bar:focused {
+    -fx-font-size: 15;
+}

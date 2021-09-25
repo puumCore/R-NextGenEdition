@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" minHeight="-Infinity" minWidth="-Infinity" prefHeight="76.0"
+           prefWidth="800.0" style="-fx-background-color: #323232;"
+           stylesheets="@../_css/historyStyle.css" xmlns="http://javafx.com/javafx/8.0.171"
+           fx:controller="org.movieHub._nextGenEdition._reincarnated._controller._nodes.ActivityNode">
+    <children>
+        <AnchorPane prefHeight="76.0" prefWidth="777.0">
+            <children>
+                <HBox prefHeight="76.0" prefWidth="800.0" spacing="20.0">
+                    <children>
+                        <VBox alignment="CENTER" fillWidth="false" prefHeight="76.0" prefWidth="178.0" spacing="10.0">
+                            <children>
+                                <AnchorPane prefHeight="20.0" prefWidth="3.0"
+                                            style="-fx-background-color: #FFFFFF; -fx-background-radius: 3px;"/>
+                                <Label fx:id="jobNameLbl" alignment="CENTER" prefHeight="17.0" prefWidth="237.0"
+                                       style="-fx-text-fill: linear-gradient(#FFB900, #F0D801);"
+                                       styleClass="activity_name" wrapText="true"/>
+                                <AnchorPane prefHeight="20.0" prefWidth="3.0"
+                                            style="-fx-background-color: #AAAAAA; -fx-background-radius: 3px;"
+                                            visible="false"/>
+                            </children>
+                        </VBox>
+                        <StackPane prefHeight="76.0" prefWidth="593.0">
+                            <children>
+                                <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                      minWidth="-Infinity" prefHeight="50.0" prefWidth="594.0" spacing="10.0">
+                                    <children>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="152.0" spacing="5.0">
+                                            <children>
+                                                <Label prefHeight="18.0" prefWidth="41.0"
+                                                       styleClass="activity_timeLine_title" text="From"
+                                                       textFill="WHITE" wrapText="true"/>
+                                                <Label fx:id="timeStartLbl" prefHeight="18.0" prefWidth="107.0"
+                                                       style="-fx-text-fill: linear-gradient(#FFB900, #F0D801);"
+                                                       styleClass="activity_timeLine_info"
+                                                       wrapText="true"/>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="152.0" spacing="5.0">
+                                            <children>
+                                                <Label prefHeight="18.0" prefWidth="41.0"
+                                                       styleClass="activity_timeLine_title" text="To" textFill="WHITE"
+                                                       wrapText="true"/>
+                                                <Label fx:id="timeEndLbl" prefHeight="18.0" prefWidth="106.0"
+                                                       style="-fx-text-fill: linear-gradient(#FFB900, #F0D801);"
+                                                       styleClass="activity_timeLine_info"
+                                                       wrapText="true"/>
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" layoutX="192.0" layoutY="10.0" prefHeight="18.0"
+                                              prefWidth="152.0" spacing="5.0">
+                                            <children>
+                                                <Label prefHeight="18.0" prefWidth="41.0"
+                                                       styleClass="activity_timeLine_title" text="Status"
+                                                       textFill="WHITE" wrapText="true"/>
+                                                <Label fx:id="statusLbl" prefHeight="18.0" prefWidth="106.0"
+                                                       style="-fx-text-fill: linear-gradient(#FFB900, #F0D801);"
+                                                       styleClass="activity_timeLine_info"
+                                                       wrapText="true"/>
+                                            </children>
+                                        </HBox>
+                                        <JFXButton graphicTextGap="10.0" onAction="#show_list_of_media"
+                                                   prefHeight="50.0" prefWidth="107.0" ripplerFill="#6e6514"
+                                                   style="-fx-border-color: linear-gradient(#FFB900, #F0D801); -fx-border-width: 2px; -fx-background-color: #323232;"
+                                                   styleClass="activity_view_btn" text="View List" textFill="white">
+                                            <cursor>
+                                                <Cursor fx:constant="HAND"/>
+                                            </cursor>
+                                            <graphic>
+                                                <MaterialDesignIconView fill="WHITE" glyphName="INFORMATION_OUTLINE"
+                                                                        size="20"
+                                                                        style="-fx-fill: linear-gradient(#FFB900, #F0D801);"/>
+                                            </graphic>
+                                        </JFXButton>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </StackPane>
+                    </children>
+                </HBox>
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>

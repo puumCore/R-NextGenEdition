@@ -1,0 +1,11 @@
+.progBar > .track, .progBar > .bar {
+    -fx-background-color-radius : 0;
+    -fx-background-insets: 0;
+}
+.progBar > .bar{
+    -fx-background-color:  #171717;
+}
+.progBar > .track { 
+    -fx-background-color: rgb(255, 255, 255);
+     -fx-opacity: 1.0;
+    }

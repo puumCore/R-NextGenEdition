@@ -1,0 +1,14 @@
+.progBar>.track,
+.progBar>.bar {
+    -fx-background-color-radius: 0;
+    -fx-background-insets: 0;
+}
+
+.progBar>.bar {
+    -fx-background-color: linear-gradient(#FFB900, #F0D801);
+}
+
+.progBar>.track {
+    -fx-background-color: #171717;
+    -fx-opacity: 1.0;
+}

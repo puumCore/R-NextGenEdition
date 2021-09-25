@@ -1,0 +1,16 @@
+.name {
+    -fx-font-family: 'Fira Sans Semibold';
+    -fx-font-size: 22px;
+}
+
+.classDrive {
+    -fx-font-family: 'Montserrat Medium';
+    -fx-font-size: 20px;
+}
+.statusText {
+    -fx-font-family: 'Fira Sans Regular';
+    -fx-font-size: 14px;
+}
+.handCursor {
+ -fx-cursor: hand;
+}
