@@ -4,32 +4,44 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Tooltip?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="890.0" style="-fx-background-color: #323232;" stylesheets="@../_css/showStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.movieHub._nextGenEdition._reincarnated._controller._nodes.StreamNode">
+<?import javafx.scene.layout.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+           minWidth="-Infinity"
+           prefHeight="47.0" prefWidth="890.0" style="-fx-background-color: #323232;"
+           stylesheets="@../_css/showStyle.css" xmlns="http://javafx.com/javafx/8.0.171"
+           fx:controller="org.movieHub._nextGenEdition._reincarnated._controller._nodes.StreamNode">
     <children>
-        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="890.0">
+        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                    prefHeight="44.0" prefWidth="890.0">
             <children>
-                <Label fx:id="showNameTF" layoutX="14.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="563.0" styleClass="labelText" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" wrapText="true">
-               <tooltip>
-                        <Tooltip styleClass="tooltipText" text="One Movie file" />
-               </tooltip>
-            </Label>
-            <Label fx:id="statusTF" layoutX="597.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="170.0" styleClass="status" textFill="#e42828" wrapText="true" />
-                <Label fx:id="typeLbl" alignment="CENTER" layoutX="787.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="37.0" styleClass="fileType" textFill="#00fa0c" wrapText="true" />
-                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="842.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#remove" prefHeight="44.0" prefWidth="47.0" ripplerFill="#653939" style="-fx-background-radius: 0px; -fx-background-color: #ffffff;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <Label fx:id="showNameTF" layoutX="14.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="563.0"
+                       styleClass="labelText" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+                    <tooltip>
+                        <Tooltip styleClass="tooltipText" text="One Movie file"/>
+                    </tooltip>
+                </Label>
+                <Label fx:id="statusTF" layoutX="597.0" layoutY="13.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="19.0" prefWidth="170.0"
+                       styleClass="status" textFill="#e42828" wrapText="true"/>
+                <Label fx:id="typeLbl" alignment="CENTER" layoutX="787.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                       minHeight="-Infinity" minWidth="-Infinity" prefHeight="44.0" prefWidth="37.0"
+                       styleClass="fileType" textFill="#00fa0c" wrapText="true"/>
+                <JFXButton contentDisplay="GRAPHIC_ONLY" layoutX="842.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                           minHeight="-Infinity" minWidth="-Infinity" onAction="#remove" prefHeight="44.0"
+                           prefWidth="47.0" ripplerFill="#653939"
+                           style="-fx-background-radius: 0px; -fx-background-color: #ffffff;"
+                           AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <graphic>
-                        <MaterialDesignIconView fill="#e42828" glyphName="PLAYLIST_REMOVE" size="20" />
+                        <MaterialDesignIconView fill="#e42828" glyphName="PLAYLIST_REMOVE" size="20"/>
                     </graphic>
                     <tooltip>
-                        <Tooltip styleClass="tooltipText" text="Click to remove" />
+                        <Tooltip styleClass="tooltipText" text="Click to remove"/>
                     </tooltip>
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </JFXButton>
             </children>

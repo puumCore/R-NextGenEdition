@@ -9,13 +9,13 @@ import org.movieHub._nextGenEdition._reincarnated._model._enum.LoadStatus;
  */
 public class History {
 
+    private transient final Gson gson = new Gson();
     private String date;
     private String timeWhenItStarted;
     private String timeWhenItStopped;
     private Load load;
     private LoadPurpose loadPurpose;
     private LoadStatus loadStatus;
-    private transient final Gson gson = new Gson();
 
     public String getDate() {
         return date;

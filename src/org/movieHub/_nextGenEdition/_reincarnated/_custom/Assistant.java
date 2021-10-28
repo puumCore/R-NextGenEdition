@@ -38,7 +38,7 @@ import java.util.stream.IntStream;
 
 public class Assistant extends Email {
 
-    public static final List<StreamLoad> STREAM_LOADS = new ArrayList<>();
+    public static final List<StreamLoad> STREAM_LOADS = new CopyOnWriteArrayList<>();
     protected static final Set<Show> SHOW_SET = new HashSet<>();
     public final String CONTEXT_PATH = "/movieHub/v2/nxtG";
     protected final String EXTENSIONS_FOR_MOVIES_ONLY = ".m4v:.mpeg1:.mpeg2:.flv:.mkv:.mov:.mpeg4:.vob:.avi:.mpeg:.m4a:.3gp:.mp4:.m4p";
@@ -57,12 +57,12 @@ public class Assistant extends Email {
     protected final String get_status_of_show_files(StreamLoad streamLoad) {
         int size = streamLoad.getShowStreamList().size();
         AtomicInteger showCount = new AtomicInteger(0);
-        streamLoad.getShowStreamList().forEach(showStream -> {
+        for (ShowStream showStream : streamLoad.getShowStreamList()) {
             File file = new File(showStream.getValue());
             if (file.exists() && file.canRead()) {
                 showCount.incrementAndGet();
             }
-        });
+        }
         if (showCount.get() < size) {
             int difference = size - showCount.get();
             return (difference == size) ? (size == 1) ? "Missing" : "All are missing" : String.format("%d out of %d are missing", difference, size);
@@ -179,14 +179,17 @@ public class Assistant extends Email {
 
     protected final VBox get_parent_VBox(Node node, String parentName) {
         Node parentNode = node.getParent();
-        if (parentNode instanceof VBox) {
-            if (parentNode.getId() != null) {
-                if (parentNode.getId().equals(parentName)) {
-                    return (VBox) parentNode;
+        if (parentNode != null) {
+            if (parentNode instanceof VBox) {
+                if (parentNode.getId() != null) {
+                    if (parentNode.getId().equals(parentName)) {
+                        return (VBox) parentNode;
+                    }
                 }
             }
+            return get_parent_VBox(parentNode, parentName);
         }
-        return get_parent_VBox(parentNode, parentName);
+        return null;
     }
 
     protected final boolean email_is_in_correct_format(String param) {

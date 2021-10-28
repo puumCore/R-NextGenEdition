@@ -6,9 +6,11 @@ import org.movieHub._nextGenEdition._reincarnated._model._enum.EntertainmentType
 import org.movieHub._nextGenEdition._reincarnated._model._object.Load;
 import org.movieHub._nextGenEdition._reincarnated._model._object.Show;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.*;
+import java.io.*;
+import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.List;
 
@@ -77,8 +79,8 @@ public class LoadTransit extends Task<String> {
 
     private void copy_target_file(File targetFile, File destinationFolder) {
         try {
-            Path copy = Files.copy(targetFile.toPath(), destinationFolder.toPath().resolve(targetFile.toPath().getFileName()), StandardCopyOption.REPLACE_EXISTING);
-            if (!copy.toFile().exists()) {
+            Path copy = duplicate_file_in_another_directory(targetFile, destinationFolder.toPath().resolve(targetFile.toPath().getFileName()).toFile());
+            if (copy == null || (!copy.toFile().exists())) {
                 Platform.runLater(() -> assistant.warning_message("Incomplete!", String.format("%s could not be copied!", targetFile.getName())).show());
             }
         } catch (Exception e) {
@@ -162,6 +164,31 @@ public class LoadTransit extends Task<String> {
         return get_path_to_the_copied_file(from, to) != null;
     }
 
+    private Path duplicate_file_in_another_directory(File sourceFile, File duplicateFile) {
+        try {
+            if (duplicateFile.exists() && duplicateFile.length() == sourceFile.length()) {
+                return duplicateFile.toPath();
+            } else {
+                Files.deleteIfExists(duplicateFile.toPath());
+            }
+            DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(duplicateFile)));
+            DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(new FileInputStream(sourceFile)));
+            int count;
+            byte[] buffer = new byte[(1024 * 2)];
+            while (((count = dataInputStream.read(buffer)) > 0) && !this.isStopped) {
+                dataOutputStream.write(buffer, 0, count);
+            }
+            dataInputStream.close();
+            dataOutputStream.close();
+            return duplicateFile.toPath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            new Thread(assistant.write_stack_trace(e)).start();
+            Platform.runLater(() -> assistant.programmer_error(e).show());
+        }
+        return null;
+    }
+
     private Path get_path_to_the_copied_file(File originalFile, File duplicateFile) {
         try {
             if (!duplicateFile.getParentFile().exists()) {
@@ -176,7 +203,7 @@ public class LoadTransit extends Task<String> {
                     return null;
                 }
             }
-            return Files.copy(originalFile.toPath(), duplicateFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            return duplicate_file_in_another_directory(originalFile, duplicateFile);
         } catch (Exception e) {
             e.printStackTrace();
             new Thread(assistant.write_stack_trace(e)).start();

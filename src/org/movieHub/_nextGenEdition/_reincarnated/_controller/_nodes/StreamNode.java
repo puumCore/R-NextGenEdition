@@ -37,8 +37,10 @@ public class StreamNode extends Assistant implements Initializable {
     @FXML
     void remove(ActionEvent event) {
         if (STREAM_LOADS.remove(this.myStreamLoad)) {
-            VBox jobBox = get_parent_VBox(showNameTF, "streamBox");
-            remove_child_from_Vbox(jobBox, showNameTF.getParent().getParent());
+            VBox streamBox = get_parent_VBox(showNameTF, "streamBox");
+            if (streamBox != null) {
+                remove_child_from_Vbox(streamBox, showNameTF.getParent().getParent());
+            }
             if (!list_is_written_to_jsonFile(STREAM_LOADS, STREAM_LOAD_JF)) {
                 error_message("Incomplete!", "The updated list has not been saved").show();
             }

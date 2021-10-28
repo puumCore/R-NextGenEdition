@@ -20,7 +20,7 @@ public abstract class Email extends Watchdog {
      * When sending an email to someone using java, it will only work if you get an APP PASSWORD from your email provider
      * </strong>
      */
-    private final String[] DEVELOPER_ADDRESSES = new String[] {"puumInc@outlook.com", "emandela60@gmail.com"};
+    private final String[] DEVELOPER_ADDRESSES = new String[]{"puumInc@outlook.com", "emandela60@gmail.com"};
 
     public boolean send_automatic_reply_to_user(String receiverAddress) {
         if (Arrays.stream(DEVELOPER_ADDRESSES).filter(receiverAddress::equalsIgnoreCase).findAny().orElse(null) != null) {

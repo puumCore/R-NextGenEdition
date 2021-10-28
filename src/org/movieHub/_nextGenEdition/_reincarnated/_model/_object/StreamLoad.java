@@ -38,6 +38,26 @@ public class StreamLoad {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        StreamLoad that = (StreamLoad) o;
+
+        if (!name.equals(that.name)) return false;
+        if (!key.equals(that.key)) return false;
+        return showStreamList.equals(that.showStreamList);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + key.hashCode();
+        result = 31 * result + showStreamList.hashCode();
+        return result;
+    }
+
+    @Override
     public String toString() {
         return new Gson().toJson(this, StreamLoad.class);
     }

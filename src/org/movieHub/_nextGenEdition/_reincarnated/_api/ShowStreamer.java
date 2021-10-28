@@ -2,12 +2,17 @@ package org.movieHub._nextGenEdition._reincarnated._api;
 
 import j2html.tags.ContainerTag;
 import org.movieHub._nextGenEdition._reincarnated._custom.Assistant;
+import org.movieHub._nextGenEdition._reincarnated._model._object.ShowStream;
+import org.movieHub._nextGenEdition._reincarnated._model._object.StreamLoad;
 import spark.Response;
 import spark.Spark;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 import static j2html.TagCreator.*;
 import static spark.Spark.get;
@@ -65,7 +70,6 @@ public class ShowStreamer implements Server {
         } catch (Exception e) {
             e.printStackTrace();
             new Thread(assistant.write_stack_trace(e)).start();
-            assistant.programmer_error(e).show();
         }
         return url;
     }
@@ -73,12 +77,26 @@ public class ShowStreamer implements Server {
     private void web() {
         get(String.format("%s/web", assistant.CONTEXT_PATH), (((request, response) -> {
             response.type("text/html");
+            List<StreamLoad> streamLoadList = new CopyOnWriteArrayList<>();
+            Assistant.STREAM_LOADS.forEach(streamLoad -> {
+                StreamLoad streamLoadCopy = new StreamLoad();
+                streamLoadCopy.setKey(streamLoad.getKey());
+                streamLoadCopy.setName(streamLoad.getName());
+                List<ShowStream> showStreamList = streamLoad.getShowStreamList().stream().filter(showStream -> {
+                    File file = new File(showStream.getValue());
+                    return (file.exists() && file.canRead());
+                }).collect(Collectors.toList());
+                if (!showStreamList.isEmpty()) {
+                    streamLoadCopy.setShowStreamList(showStreamList);
+                    streamLoadList.add(streamLoadCopy);
+                }
+            });
             return html()
                     .with(
                             head()
                                     .with(
                                             meta().withCharset("utf-8").withName("viewport").withContent("width=device-width,initial-scale=1.0"),
-                                            link().withRel("shortcut icon").withType("image/x-icon").withHref(String.format("%s/favicon/nextGenLogo.ico", get_http_url())),
+                                            link().withRel("shortcut icon").withType("image/x-icon").withHref(String.format("%s/favicon.ico", get_http_url())),
                                             title("Movie Hub Web")
                                     ),
                             body()
@@ -126,16 +144,15 @@ public class ShowStreamer implements Server {
                                                                             .attr("onChange=\"show_video(event)\"")
                                                                             .with(
                                                                                     optgroup()
-                                                                                            .attr("label=\"Movies\"")
+                                                                                            .attr("label=\"Singles\"")
                                                                                             .with(
-                                                                                                    Assistant.STREAM_LOADS.stream().filter(streamLoad -> streamLoad.getShowStreamList().size() == 1).map(streamLoad -> option()
+                                                                                                    streamLoadList.stream().filter(streamLoad -> streamLoad.getShowStreamList().size() == 1).map(streamLoad -> option()
                                                                                                             .withValue(String.format("%s/show/watch/m/%s", get_base_url(), streamLoad.getShowStreamList().get(0).getKey()))
                                                                                                             .withText(streamLoad.getName())).toArray(ContainerTag[]::new)
                                                                                             )
                                                                                     , optgroup()
-                                                                                            .attr("label=\"Series\"")
                                                                                             .with(
-                                                                                                    Assistant.STREAM_LOADS.stream().filter(streamLoad -> streamLoad.getShowStreamList().size() > 1).map(streamLoad -> optgroup()
+                                                                                                    streamLoadList.stream().filter(streamLoad -> streamLoad.getShowStreamList().size() > 1).map(streamLoad -> optgroup()
                                                                                                             .attr(String.format("label=\"%s\"", streamLoad.getName()))
                                                                                                             .with(
                                                                                                                     streamLoad.getShowStreamList().stream().map(showStream -> option()
@@ -186,14 +203,14 @@ public class ShowStreamer implements Server {
         }));
 
         get(String.format("/%s/show/watch/s/:loadId/:fileId", assistant.CONTEXT_PATH), ((request, response) -> {
-            response.type("video/mp4");
             String loadId = request.params(":loadId");
             String fileId = request.params(":fileId");
-            Assistant.STREAM_LOADS.stream()
-                    .filter(streamLoad -> ((streamLoad.getShowStreamList().size() > 1) && streamLoad.getKey().equals(loadId)))
-                    .findAny()
+            Assistant.STREAM_LOADS.stream().filter(streamLoad -> ((streamLoad.getShowStreamList().size() > 1) && streamLoad.getKey().equals(loadId))).findAny()
                     .flatMap(streamLoad -> streamLoad.getShowStreamList().stream().filter(showStream -> showStream.getKey().equals(fileId)).findAny())
-                    .ifPresent(showStream -> stream_to_client(showStream.getValue(), response));
+                    .ifPresent(showStream -> {
+                        response.type("video/mp4");
+                        stream_to_client(showStream.getValue(), response);
+                    });
             return HttpURLConnection.HTTP_NO_CONTENT;
         }));
     }

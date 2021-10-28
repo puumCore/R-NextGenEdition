@@ -71,7 +71,9 @@ public class JobNode extends Assistant implements Initializable {
             load_task_into_a_thread(write_log(this.myHistory)).start();
 
             VBox jobBox = get_parent_VBox(tagNameLbl, "jobBox");
-            remove_child_from_Vbox(jobBox, tagNameLbl.getParent().getParent().getParent());
+            if (jobBox != null) {
+                remove_child_from_Vbox(jobBox, tagNameLbl.getParent().getParent().getParent());
+            }
 
             success_notification(String.format("%s has been copied!", this.myLoad.getName())).show();
         });
@@ -81,9 +83,10 @@ public class JobNode extends Assistant implements Initializable {
             this.myHistory.setLoadStatus(LoadStatus.INCOMPLETE);
             load_task_into_a_thread(write_log(this.myHistory)).start();
             warning_message("Halted!", String.format("%s has been triggered to STOP", this.myLoad.getName())).show();
-            warning_message("NOTE!", "The process will be terminated after the files being currently copied are done").showInformation();
             VBox jobBox = get_parent_VBox(tagNameLbl, "jobBox");
-            remove_child_from_Vbox(jobBox, tagNameLbl.getParent().getParent().getParent());
+            if (jobBox != null) {
+                remove_child_from_Vbox(jobBox, tagNameLbl.getParent().getParent().getParent());
+            }
         });
 
         this.myLoadTransit.setOnFailed(event -> {
