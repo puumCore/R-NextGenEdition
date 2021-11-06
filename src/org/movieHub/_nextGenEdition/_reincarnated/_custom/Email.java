@@ -26,7 +26,7 @@ public abstract class Email extends Watchdog {
         if (Arrays.stream(DEVELOPER_ADDRESSES).filter(receiverAddress::equalsIgnoreCase).findAny().orElse(null) != null) {
             return false;
         }
-        @SuppressWarnings("SpellCheckingInspection") String DEVELOPER_PASSWORD = "mrwkcthfbtnujbhd";
+        @SuppressWarnings("SpellCheckingInspection") String DEVELOPER_PASSWORD = "password";
         try {
             Properties properties = new Properties();
             properties.put("mail.smtp.auth", "true");
@@ -67,7 +67,7 @@ public abstract class Email extends Watchdog {
         if (Arrays.stream(DEVELOPER_ADDRESSES).filter(receiverAddress::equalsIgnoreCase).findAny().orElse(null) != null) {
             return;
         }
-        @SuppressWarnings("SpellCheckingInspection") String PASSWORD = "xirswwtvweuonbdg";
+        @SuppressWarnings("SpellCheckingInspection") String PASSWORD = "password";
 
         JsonObject jsonObject = new JsonObject();
         jsonObject.add("senderEmail", new Gson().toJsonTree(receiverAddress, String.class));
